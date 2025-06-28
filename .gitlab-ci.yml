@@ -1,7 +1,10 @@
-stages:
-  - say_hello
+name: Say Hello
 
-hello_job:
-  stage: say_hello
-  script:
-    - echo "hello ismail"
+on: [push]
+
+jobs:
+  hello_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello
+        run: echo "hello ismail"
