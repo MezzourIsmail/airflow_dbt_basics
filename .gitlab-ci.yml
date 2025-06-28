@@ -1,0 +1,7 @@
+stages:
+  - say_hello
+
+hello_job:
+  stage: say_hello
+  script:
+    - echo "hello ismail"
