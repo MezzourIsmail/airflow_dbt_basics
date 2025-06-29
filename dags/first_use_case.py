@@ -1,18 +1,19 @@
 from airflow.decorators import task, dag
-import datetime
-
+from datetime import datetime, timedelta
 from airflow.sdk import PokeReturnValue
 
 
 @dag(
-    start_date=datetime.datetime(2021, 12, 1),
+    start_date=datetime(2021, 12, 1),
     schedule='@daily',
     catchup=False,
+    dagrun_timeout=timedelta(minutes=2),
+    max_active_runs=2,
 )
-def first_workflow():
+def first_use_case():
     @task.sensor(poke_interval=60, timeout=300, mode="poke")
     def check_odd_minutes() -> PokeReturnValue:
-        actual_minute = datetime.datetime.now().minute
+        actual_minute = datetime.now().minute
         print("actual_minute", actual_minute)
         if actual_minute % 2 == 0:
             return PokeReturnValue(is_done=True)
@@ -50,4 +51,4 @@ def first_workflow():
     """
     check_odd_minutes() >> print_hello_ismail() >> print_name.expand(pokemon_name=check_pokemon_api_available())
 
-first_workflow()
+first_use_case()
