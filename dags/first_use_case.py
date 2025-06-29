@@ -8,7 +8,7 @@ from airflow.sdk import PokeReturnValue
     schedule='@daily',
     catchup=False,
     dagrun_timeout=timedelta(minutes=2),
-    max_active_runs=2,
+    max_active_runs=1,
 )
 def first_use_case():
     @task.sensor(poke_interval=60, timeout=300, mode="poke")

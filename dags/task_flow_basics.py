@@ -6,7 +6,7 @@ from datetime import datetime
     schedule='@daily',
     catchup=False,
 )
-def task_dag():
+def test_task_flow():
     @task
     def test_ismail():
         print("hello Ismail")
@@ -17,4 +17,4 @@ def task_dag():
 
     test_ismail() >> test_alice()
 
-task_dag()
+test_task_flow()
