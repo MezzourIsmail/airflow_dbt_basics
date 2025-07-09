@@ -12,7 +12,7 @@ from airflow.sdk import PokeReturnValue
     tags=["sensor", "branch", "check_api", "xcoms"]
 )
 def first_use_case():
-    @task.sensor(poke_interval=60, timeout=300, mode="poke")
+    @task.sensor(poke_interval=30, timeout=300, mode="poke")
     def check_odd_minutes() -> PokeReturnValue:
         actual_minute = datetime.now().minute
         print("actual_minute", actual_minute)
@@ -35,7 +35,7 @@ def first_use_case():
     def even_hour():
         print("even_hour")
 
-    @task
+    @task(trigger_rule="one_success")
     def go_check_pokemon_api():
         print("go_check_pokemon_api")
 
