@@ -1,7 +1,5 @@
 name: say_hello
 
-on: [push]
-
 jobs:
   hello_job:
     runs-on: ubuntu-latest
