@@ -1,10 +1,42 @@
-name: say_hello
+name: CI Pipeline
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  hello_job:
+  say_hello:
     runs-on: ubuntu-22.04
     steps:
-      - name: Print Hello
+      - uses: actions/checkout@v3
+      - name: Say Hello
         run: echo "hello ismail"
+
+  astro_setup:
+    runs-on: ubuntu-22.04
+    needs: say_hello
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Astronomer CLI
+        run: |
+          # Use the official installer script
+          curl -sSL https://install.astronomer.io | sudo bash
+      - name: Verify astro version
+        run: astro version
+      - name: Parse your DAGs
+        run: astro dev parse
+
+  pytest:
+    runs-on: ubuntu-22.04
+    needs: astro_setup
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install apache-airflow pytest
+      - name: Run pytest suite
+        run: pytest
