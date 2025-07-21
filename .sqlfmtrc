@@ -1,0 +1,23 @@
+# line formating
+line_length: 90  # Limits each line to 90 characters
+wrap_queries: false  # Prevents automatic query wrapping by length
+collapse_whitespace: true  # Removes extra whitespace between tokens
+ensure_trailing_newline: true  # Ensures each file ends with a newline
+newline_after_select: true  # Adds a newline after the `SELECT`
+newline_before_from: true  # Adds a newline before the `FROM`
+
+# SQL style
+keywords: lower  # Converts SQL keywords to lowercase
+upper_literals: false  # Keeps literals like `true` in lowercase
+comma_style: trailing  # Places commas after each list item
+align_assignments: true  # Aligns `=` for better readability
+indented_join: true  # Indents `JOIN` for better query readability
+preserve_newlines: true  # Retains newlines between SQL sections
+
+# indentation and syntax
+tab_width: 4  # Sets indentation width to 4 spaces
+use_tabs: false  # Uses spaces instead of tabs
+no_syntax_check: false  # Enables SQL syntax checking
+
+# Jinja
+reformat_jinja: true  # Reformats Jinja templating blocks in SQL

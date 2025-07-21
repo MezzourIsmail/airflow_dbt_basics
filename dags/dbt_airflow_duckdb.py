@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 from cosmos import DbtDag, ProjectConfig, ProfileConfig, ExecutionConfig
@@ -14,6 +13,7 @@ profile_config = ProfileConfig(
     target_name="dev",
     profile_mapping=DuckDBUserPasswordProfileMapping(
         conn_id="duckdb_default",
+        profile_args={"threads": 1},
     ),
 )
 
@@ -31,6 +31,8 @@ dbt_cosmos_duckdb = DbtDag(
     profile_config=profile_config,
     execution_config=execution_config,
     schedule="@daily",
+    max_active_runs=1,
+    max_active_tasks=1,
     start_date=datetime(2025, 1, 1),
     catchup=False,
     tags=["dbt", "duckdb", "cosmos"],
