@@ -40,3 +40,19 @@ jobs:
         run: pip install apache-airflow pytest
       - name: Run pytest suite
         run: pytest
+
+  sqlfmt_check:
+    runs-on: ubuntu-22.04
+    needs: pytest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: Install sqlfmt
+        run: pip install 'shandy-sqlfmt==0.26.0'
+      - name: Run sqlfmt on models/
+        run: |
+          cd dags/dbt/airflow_duckdb
+          sqlfmt models/ macros/
