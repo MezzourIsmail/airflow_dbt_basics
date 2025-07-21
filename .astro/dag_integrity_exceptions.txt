@@ -1,1 +1,2 @@
 # Add dag files to exempt from parse test below. ex: dags/<test-file>
+dags/dbt_airflow_duckdb.py
