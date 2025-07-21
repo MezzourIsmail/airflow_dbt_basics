@@ -2,3 +2,7 @@
 
 requests~=2.32.4
 pendulum~=3.1.0
+dbt-core==1.10.4
+dbt-duckdb==1.9.4
+astronomer-cosmos==1.10.1
+airflow-provider-duckdb==0.2.0

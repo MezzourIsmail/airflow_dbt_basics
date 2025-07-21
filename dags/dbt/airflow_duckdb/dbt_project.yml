@@ -14,3 +14,17 @@ target-path: 'target'
 clean-targets:
   - 'target'
   - 'dbt_modules'
+
+seeds:
+  my_duckdb_project:
+    +schema: raw_data
+
+models:
+  my_duckdb_project:
+    stg:
+      +schema: stg
+      +materialized: view
+    int:
+      +schema: int
+    marts:
+      +schema: marts
