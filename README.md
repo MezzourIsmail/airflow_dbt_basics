@@ -49,7 +49,7 @@ Set up of your environment
 - You need docker desktop 
 - On linux launch the command: `brew install astronomer/tap/astro`
 - To launch astronomer: `astro dev start`:
-![img.png](astro_dev_start/img.png)
+![img.png](pictures/img.png)
 
 ## Install duckdb
 
